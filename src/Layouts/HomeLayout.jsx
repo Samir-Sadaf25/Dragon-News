@@ -3,6 +3,8 @@ import Header from '../Components/Header';
 import { Outlet } from 'react-router';
 import LatestNews from '../Components/LatestNews';
 import Navber from '../Components/Navber';
+import LeftAside from '../Components/LeftAside';
+import RightAside from '../Components/RightAside';
 
 const HomeLayout = () => {
     return (
@@ -16,11 +18,16 @@ const HomeLayout = () => {
                     <Navber></Navber>
                 </section>
             </header>
-            <main>
-                <section className='left-nav'></section>
-                <section className='main'>
+            <main className='w-11/12 mx-auto my-5 grid grid-cols-12'>
+                <aside className='col-span-3'>
+                    <LeftAside></LeftAside>
+                </aside>
+                <section className='col-span-6'>
                     <Outlet></Outlet>
                 </section>
+                <aside className='col-span-3'>
+                    <RightAside></RightAside>
+                </aside>
                 <section className='right-nav'></section>
             </main>
         </div>

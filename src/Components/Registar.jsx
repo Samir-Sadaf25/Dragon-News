@@ -1,12 +1,33 @@
-import React from 'react';
+import React, { use } from 'react';
 import { Link } from 'react-router';
+import { AuthContext } from '../Provider/AuthProvider';
 
 const Registar = () => {
+    const {setUser,createUser} = use(AuthContext);
+   
+    const handleRegistar = (e) =>{
+        e.preventDefault();
+        const form = e.target;
+        // const name = form.name.value;
+        const email = form.email.value;
+        const password = form.password.value;
+        // const photo = form.photo.value;
+
+        createUser(email,password)
+        .then(result => {
+            const user =result.user
+            console.log(result);
+            setUser(user);
+        }).catch(error =>{
+            console.log(error.message);
+        })
+    }
+    
     return (
         <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl px-5 py-5 mt-10 place-self-center">
             <h1 className="text-xl font-bold text-center mt-2.5">Registar your account</h1>
             <div className="card-body">
-                <form  className="fieldset">
+                <form onSubmit={handleRegistar} className="fieldset">
                     <label className="label">name</label>
                     <input type="text" className="input" name='name' placeholder="Your name" />
                     <label className="label">Photo URL</label>

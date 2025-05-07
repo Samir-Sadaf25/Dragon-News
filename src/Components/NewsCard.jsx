@@ -2,6 +2,7 @@ import React from 'react';
 import { HiOutlineBookmark, HiOutlineShare } from 'react-icons/hi';
 import { AiFillStar } from 'react-icons/ai';
 import { FaEye } from 'react-icons/fa';
+import { Link } from 'react-router';
 
 const NewsCard = ({ news }) => {
     const {
@@ -11,6 +12,7 @@ const NewsCard = ({ news }) => {
         details,
         total_view,
         rating,
+        id
     } = news;
 
     const formattedDate = new Date(news.author.published_date).toLocaleDateString('en-US', {
@@ -48,9 +50,9 @@ const NewsCard = ({ news }) => {
             <p className="text-gray-600 text-sm">
                 {shortDetails}
                 {details.length > 200 && (
-                    <span className="text-orange-600 font-semibold ml-1 cursor-pointer">
+                    <Link to={`/newsDetails/${id}`}><span className="text-orange-600 font-semibold ml-1 cursor-pointer">
                         Read More
-                    </span>
+                    </span></Link>
                 )}
             </p>
 

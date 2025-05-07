@@ -44,7 +44,7 @@ const NewsCard = ({ news }) => {
             <h2 className="text-lg font-bold text-gray-800 leading-snug">{title}</h2>
 
             {/* Image */}
-            <img src={thumbnail_url} alt="news" className="w-full h-56 object-cover rounded-lg" />
+            <img src={thumbnail_url} alt="news" className="w-full  object-cover rounded-lg" />
 
             {/* Details */}
             <p className="text-gray-600 text-sm">

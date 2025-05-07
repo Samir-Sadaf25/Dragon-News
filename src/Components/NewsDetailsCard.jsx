@@ -26,12 +26,12 @@ const NewsDetailsCard = ({ news }) => {
       {/* Title */}
       <Link
         to={`/news/${id}`}
-        className="text-xl font-semibold text-blue-800 hover:underline"
+        className="text-2xl font-semibold text-blue-800 hover:underline"
       >
         {title}
       </Link>
 
-      {/* Meta & Date */}
+  
       
 
       {/* Details */}

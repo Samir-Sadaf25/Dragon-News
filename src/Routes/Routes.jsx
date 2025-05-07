@@ -8,6 +8,7 @@ import AuthLayout from "../Layouts/AuthLayout";
 import Registar from "../Components/Registar";
 import Login from "../Components/Login";
 import NewsDetails from "../Pages/NewsDetails";
+import PrivateRoute from "../Provider/PrivateRoute";
 
 
 const router = createBrowserRouter([
@@ -47,7 +48,9 @@ const router = createBrowserRouter([
   },
   {
     path: "/newsDetails/:id",
-    Component: NewsDetails,
+    element:(
+      <PrivateRoute><NewsDetails></NewsDetails></PrivateRoute>
+    ), 
     hydrateFallbackElement: <span className="loading loading-dots loading-xl"></span>,
     loader: () => fetch('/news.json')
   }

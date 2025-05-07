@@ -19,7 +19,7 @@ const NewsDetails = () => {
                 <Header></Header>
             </header>
             <main className='grid grid-cols-12 gap-5 w-11/12 mx-auto py-10'>
-                <section className='col-span-9'>
+                <section className='col-span-9 '>
                     <NewsDetailsCard news={news}></NewsDetailsCard>
                 </section>
                 <aside className='col-span-3'>

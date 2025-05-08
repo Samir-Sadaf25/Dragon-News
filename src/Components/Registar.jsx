@@ -1,28 +1,37 @@
 import React, { use } from 'react';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import { AuthContext } from '../Provider/AuthProvider';
 
 const Registar = () => {
-    const {setUser,createUser} = use(AuthContext);
-   
-    const handleRegistar = (e) =>{
+    const { setUser, createUser, updateUser } = use(AuthContext);
+    const navigate = useNavigate();
+    const handleRegistar = (e) => {
         e.preventDefault();
         const form = e.target;
-        // const name = form.name.value;
+        const name = form.name.value;
         const email = form.email.value;
         const password = form.password.value;
-        // const photo = form.photo.value;
+        const photo = form.photo.value;
 
-        createUser(email,password)
-        .then(result => {
-            const user =result.user
-            console.log(result);
-            setUser(user);
-        }).catch(error =>{
-            console.log(error.message);
-        })
+        createUser(email, password)
+            .then(result => {
+                const user = result.user;
+                updateUser({ displayName: name, photoURL: photo }).then(() => {
+                    // Profile updated!
+                    setUser({ ...user, displayName: name, photoURL: photo });
+                    navigate("/auth/login")
+                }).catch((error) => {
+                    // An error occurred
+                    setUser(user);
+                    // console.log(error);
+                });
+
+
+            }).catch(error => {
+                // console.log(error.message);
+            })
     }
-    
+
     return (
         <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl px-5 py-5 mt-10 place-self-center">
             <h1 className="text-xl font-bold text-center mt-2.5">Registar your account</h1>
